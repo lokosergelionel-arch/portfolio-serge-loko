@@ -262,7 +262,7 @@
   @media (max-width:700px){ .timeline{padding-left:20px;} .job::before{left:-20px;} }
 
   /* projects */
-  .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  .projects{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
   @media (max-width:900px){ .projects{grid-template-columns:1fr;} }
   .card{
     background:linear-gradient(160deg, var(--panel), var(--panel-2));
@@ -279,7 +279,8 @@
     padding:4px 8px; white-space:nowrap; text-transform:uppercase; border:1px solid;
   }
   .pill-live{color:var(--cyan); border-color:var(--cyan); background:rgba(60,239,224,0.08);}
-  .pill-dev{color:var(--magenta); border-color:var(--magenta); background:rgba(255,79,163,0.08);} .pill-ready{color:var(--violet); border-color:var(--violet); background:rgba(155,107,255,0.1);}
+  .pill-dev{color:var(--magenta); border-color:var(--magenta); background:rgba(255,79,163,0.08);}
+  .pill-ready{color:var(--violet); border-color:var(--violet); background:rgba(155,107,255,0.1);}
   .card p{color:var(--text-dim); font-size:.9rem; line-height:1.6;}
   .card ul{margin:0; padding-left:1.1em; color:var(--text-dim); font-size:.85rem; line-height:1.55; display:flex; flex-direction:column; gap:3px;}
   .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto;}
@@ -423,9 +424,9 @@
   <section id="projets" style="border-top:none;">
     <div class="section-head" style="margin-bottom:16px;">
       <h2>Projets</h2>
-      <span class="section-tag mono">BUILD · 3 PRODUITS</span>
+      <span class="section-tag mono">BUILD · 4 PRODUITS</span>
     </div>
-    <p class="exp-intro">Trois produits construits seul, du cahier des charges au déploiement — architecture backend, applications mobiles, paiement et infrastructure.</p>
+    <p class="exp-intro">Quatre produits construits seul, du cahier des charges au déploiement — architecture backend, applications mobiles, paiement et infrastructure.</p>
     <div class="projects">
       <div class="card">
         <div class="card-top">
@@ -447,9 +448,9 @@
       <div class="card">
         <div class="card-top">
           <h3>Sage Empire</h3>
-          <span class="pill pill-live">Développé & maintenu</span>
+          <span class="pill pill-live">En ligne</span>
         </div>
-        <p>Plateforme multi-services haut de gamme : immobilier, événementiel, services digitaux et mode, avec une identité dark &amp; gold.</p>
+        <p>Site web multi-services haut de gamme : immobilier, événementiel, services digitaux et mode, avec une identité dark &amp; gold.</p>
         <ul>
           <li>Annonces immobilières géolocalisées</li>
           <li>Visuels hero animés en canvas, conformité RGPD</li>
@@ -463,8 +464,25 @@
 
       <div class="card">
         <div class="card-top">
+          <h3>Mako Services</h3>
+          <span class="pill pill-live">En ligne</span>
+        </div>
+        <p>Site web pour une entreprise togolaise de nettoyage, polissage et désinfection de vaisselle et couverts après événements (mariages, réceptions).</p>
+        <ul>
+          <li>Calculateur de devis interactif selon le type d'événement et le nombre d'invités</li>
+          <li>Trois formules — Standard, Mariage, VIP — avec tarification dégressive</li>
+          <li>Prise de contact directe via WhatsApp et email</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+        </div>
+        <a class="card-link" href="https://www.makoservicestg.com" target="_blank" rel="noopener">makoservicestg.com →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
           <h3>Allô Tchalé !</h3>
-                <span class="pill pill-ready">Finalisé · bientôt en ligne</span>
+          <span class="pill pill-ready">Finalisé · bientôt en ligne</span>
         </div>
         <p>Application mobile mettant en relation des clients avec des artisans qualifiés — électriciens, plombiers, menuisiers, frigoristes. Développement terminé, en attente de lancement public.</p>
         <ul>
@@ -557,6 +575,16 @@
             <li>Gestion de tickets critiques sous pression</li>
           </ul>
         </div>
+        <div class="job">
+          <div class="job-date mono">2014 – 2018 — LOMÉ, TOGO</div>
+          <div class="job-title">Membre actif → Vice-président local → Manager de projets</div>
+          <div class="job-company">AIESEC Togo</div>
+          <ul>
+            <li>Membre actif, puis élu vice-président au niveau local</li>
+            <li>Manager de projets chargé du recrutement de stagiaires internationaux</li>
+            <li>Compétences développées : négociation, gestion des ressources humaines, communication, animation</li>
+          </ul>
+        </div>
       </div>
 
       <div class="journey">
@@ -583,7 +611,7 @@
       <div>
         <div class="entry">
           <div class="entry-title">BSc Computer Science</div>
-          <div class="entry-sub">JAIN University, Inde (en ligne)</div>
+          <div class="entry-sub">JAIN University, Inde</div>
           <span class="entry-date">2024</span>
         </div>
         <div class="entry">
