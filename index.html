@@ -279,7 +279,7 @@
     padding:4px 8px; white-space:nowrap; text-transform:uppercase; border:1px solid;
   }
   .pill-live{color:var(--cyan); border-color:var(--cyan); background:rgba(60,239,224,0.08);}
-  .pill-dev{color:var(--magenta); border-color:var(--magenta); background:rgba(255,79,163,0.08);}
+  .pill-dev{color:var(--magenta); border-color:var(--magenta); background:rgba(255,79,163,0.08);} .pill-ready{color:var(--violet); border-color:var(--violet); background:rgba(155,107,255,0.1);}
   .card p{color:var(--text-dim); font-size:.9rem; line-height:1.6;}
   .card ul{margin:0; padding-left:1.1em; color:var(--text-dim); font-size:.85rem; line-height:1.55; display:flex; flex-direction:column; gap:3px;}
   .tag-row{display:flex; flex-wrap:wrap; gap:6px; margin-top:auto;}
@@ -464,13 +464,13 @@
       <div class="card">
         <div class="card-top">
           <h3>Allô Tchalé !</h3>
-          <span class="pill pill-dev">En développement</span>
+                <span class="pill pill-ready">Finalisé · bientôt en ligne</span>
         </div>
-        <p>Application mobile mettant en relation des clients avec des artisans qualifiés — électriciens, plombiers, menuisiers, frigoristes.</p>
+        <p>Application mobile mettant en relation des clients avec des artisans qualifiés — électriciens, plombiers, menuisiers, frigoristes. Développement terminé, en attente de lancement public.</p>
         <ul>
           <li>Paiement séquestre via Stripe Connect</li>
           <li>Géolocalisation des demandes et des artisans</li>
-          <li>Backlog structuré en 11 epics, du KYC artisan au lancement commercial</li>
+          <li>Parcours complet, de l'inscription artisan (KYC) au lancement commercial</li>
         </ul>
         <div class="tag-row">
           <span class="tag">Flutter</span><span class="tag">NestJS</span><span class="tag">PostGIS</span>
