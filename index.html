@@ -179,6 +179,7 @@
   }
   .role-chip::before{content:"●"; color:var(--violet); font-size:.6rem;}
   .summary{max-width:58ch; color:var(--text-dim); font-size:1.02rem; line-height:1.75;}
+  .summary + .summary{margin-top:14px;}
   .status-strip{
     margin-top:24px; display:flex; flex-wrap:wrap; gap:8px 10px;
   }
@@ -292,8 +293,7 @@
   .card-link:hover{text-decoration:underline;}
 
   /* skills */
-  .skill-groups{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
-  @media (max-width:980px){ .skill-groups{grid-template-columns:repeat(2,1fr);} }
+  .skill-groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:20px;}
   @media (max-width:560px){ .skill-groups{grid-template-columns:1fr;} }
   .skill-group{
     background:linear-gradient(160deg, var(--panel), var(--panel-2));
@@ -352,6 +352,39 @@
   .contact-links{display:flex; flex-wrap:wrap; gap:14px;}
   footer{padding:36px 0 56px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
     color:var(--text-dim); font-size:.75rem; font-family:"Space Mono",monospace;}
+
+  /* ---------- guided tour ---------- */
+  .tour-highlight{
+    position:fixed; z-index:1001; border:2px solid var(--cyan); border-radius:4px;
+    box-shadow:0 0 0 9999px rgba(5,5,11,0.8), 0 0 24px var(--glow-c);
+    pointer-events:none; transition:left .35s ease, top .35s ease, width .35s ease, height .35s ease;
+    display:none;
+  }
+  .tour-tooltip{
+    position:fixed; z-index:1002; width:320px; max-width:calc(100vw - 32px);
+    background:linear-gradient(160deg, var(--panel), var(--panel-2));
+    border:1px solid var(--line-bright);
+    clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);
+    padding:20px 22px; box-shadow:0 0 30px -6px var(--glow-v);
+    transition:left .35s ease, top .35s ease; display:none;
+  }
+  .tour-tooltip .tour-step{font-family:"Space Mono",monospace; font-size:.68rem; color:var(--cyan); letter-spacing:.08em; margin-bottom:10px;}
+  .tour-progress{height:3px; background:var(--line); margin-bottom:14px; overflow:hidden; position:relative;}
+  .tour-progress i{position:absolute; left:0; top:0; bottom:0; width:0%; background:linear-gradient(90deg,var(--violet),var(--cyan)); display:block;}
+  .tour-tooltip h4{font-size:1.02rem; font-family:"Sora",sans-serif; font-weight:700; color:var(--text); margin-bottom:8px;}
+  .tour-tooltip p{font-size:.85rem; color:var(--text-dim); line-height:1.6; margin-bottom:16px;}
+  .tour-actions{display:flex; align-items:center; justify-content:space-between; gap:10px;}
+  .tour-nav-btns{display:flex; gap:8px;}
+  .tour-actions button{
+    font-family:"Space Mono",monospace; font-size:.7rem; font-weight:700; letter-spacing:.03em;
+    padding:8px 13px; border:1px solid var(--line-bright); background:transparent; color:var(--text); cursor:pointer;
+    clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px); transition:all .18s ease;
+  }
+  .tour-actions button:hover{border-color:var(--cyan); color:var(--cyan);}
+  .tour-actions button.tour-next{background:linear-gradient(135deg,var(--violet),var(--violet-2)); color:#08060F; border-color:transparent;}
+  .tour-actions button.tour-next:hover{box-shadow:0 0 18px var(--glow-v); color:#08060F;}
+  .tour-actions button.tour-skip{border:none; background:none; color:var(--text-dim); text-decoration:underline; padding:8px 4px; clip-path:none;}
+  .tour-actions button.tour-skip:hover{color:var(--cyan);}
 </style>
 
 <canvas id="net"></canvas>
@@ -381,13 +414,22 @@
         <h1>Serge Lionel<br>LOKO<span class="g1" aria-hidden="true">Serge Lionel<br>LOKO</span><span class="g2" aria-hidden="true">Serge Lionel<br>LOKO</span></h1>
       </div>
       <span class="fullname mono">KOFFI MAWUGNON SERGE LIONEL LOKO</span>
-      <div class="role-chip">DES LETTRES AU CODE · DÉVELOPPEUR FULL-STACK</div>
+      <div class="role-chip">DES LETTRES AU CODE · DÉVELOPPEUR, CHEF DE PROJET & COMMUNICANT</div>
       <p class="summary">
-        Rien ne me destinait au code : une licence de lettres et civilisations germaniques, puis une reconversion
-        vers l'informatique portée par la même curiosité. Aujourd'hui développeur full-stack et associé de
-        <strong style="color:var(--text);">SAGE EMPIRE SARL</strong>, j'imagine et je construis des produits numériques
-        de bout en bout — backend, mobile, paiement, infrastructure. Trois applications déjà nées de cette aventure,
-        entre Lomé et Budapest, avec toujours la même conviction : la meilleure façon d'apprendre, c'est de construire.
+        Mon parcours n'a rien de linéaire, et c'est précisément ce qui fait sa force. Diplômé en Lettres et
+        Civilisations Germaniques, j'ai bâti les fondations de ma carrière sur la négociation, le recrutement et
+        la direction d'équipes — de la vice-présidence d'AIESEC Togo à la gestion de projets et au support client
+        international.
+      </p>
+      <p class="summary">
+        Aujourd'hui développeur full-stack, <strong style="color:var(--text);">associé et CEO de SAGE EMPIRE SARL</strong>,
+        je mets cette double expertise business et technique au service de chaque projet : de la vision
+        stratégique à l'architecture système (backend, applications mobiles, intégration de paiements,
+        infrastructures).
+      </p>
+      <p class="summary">
+        Ayant déjà orchestré le lancement de quatre produits, j'avance avec une certitude :
+        l'excellence technique et le leadership stratégique sont indissociables pour créer un impact durable.
       </p>
       <div class="status-strip">
         <span><b>LETTRES → CODE</b> reconversion complète</span>
@@ -397,6 +439,7 @@
       <div class="cta-row">
         <a class="btn btn-primary" href="mailto:loko.sergelionel@gmail.com">Me contacter →</a>
         <a class="btn btn-ghost" href="#projets">Découvrir mes projets</a>
+        <a class="btn btn-ghost" href="#" id="tourBtn">Visite guidée ⟳</a>
       </div>
     </div>
 
@@ -426,14 +469,14 @@
       <h2>Projets</h2>
       <span class="section-tag mono">BUILD · 4 PRODUITS</span>
     </div>
-    <p class="exp-intro">Quatre produits construits seul, du cahier des charges au déploiement — architecture backend, applications mobiles, paiement et infrastructure.</p>
+    <p class="exp-intro">Quatre produits construits, du cahier des charges au déploiement — architecture backend, applications mobiles, paiement et infrastructure.</p>
     <div class="projects">
       <div class="card">
         <div class="card-top">
           <h3>NoviMed</h3>
           <span class="pill pill-live">En ligne</span>
         </div>
-        <p>Application santé et localisation de pharmacies pour Lomé. Monorepo avec app citoyenne, portail pharmacie et portail admin.</p>
+        <p>Application de santé et localisation de pharmacies pour Lomé, avec une application citoyenne, un portail pharmacie et un portail admin.</p>
         <ul>
           <li>Recherche floue de médicaments, réservation à code temporaire</li>
           <li>Upload d'ordonnance sécurisé pour les antibiotiques</li>
@@ -500,9 +543,15 @@
   <section id="competences">
     <div class="section-head">
       <h2>Compétences</h2>
-      <span class="section-tag mono">STACK</span>
+      <span class="section-tag mono">POLYVALENCE</span>
     </div>
     <div class="skill-groups">
+      <div class="skill-group">
+        <div class="skill-group-head"><h3>Gestion de projet & communication</h3><span class="skill-count">07</span></div>
+        <div class="skill-tags">
+          <span>Gestion de projet</span><span>Négociation</span><span>Gestion d'équipe & RH</span><span>Communication</span><span>Animation</span><span>Relation client</span><span>Recrutement</span>
+        </div>
+      </div>
       <div class="skill-group">
         <div class="skill-group-head"><h3>Langages</h3><span class="skill-count">05</span></div>
         <div class="skill-tags">
@@ -951,5 +1000,133 @@
       if(!reduceMotion) requestAnimationFrame(frame);
     }
     frame();
+  })();
+
+  // guided tour
+  (function(){
+    const steps = [
+      { sel:'.hero', title:'Bienvenue', text:"Je suis Serge Lionel Loko — développeur full-stack, chef de projet et communicant. Cette visite guidée vous présente mon profil en quelques étapes." },
+      { sel:'#projets', title:'Projets', text:"Quatre produits lancés, de la stratégie à l'architecture technique — santé, immobilier, services et artisanat." },
+      { sel:'#competences', title:'Compétences', text:"Un profil polyvalent : gestion de projet, négociation, communication, et une stack technique complète." },
+      { sel:'#parcours', title:'Parcours professionnel', text:"De la vice-présidence d'AIESEC Togo au support client international, avant de fonder SAGE EMPIRE SARL." },
+      { sel:'#formation', title:'Formation & certifications', text:"Mes diplômes et certifications, entre lettres, informatique et gestion de projet." },
+      { sel:'#contact', title:'Contact', text:"Discutons de votre prochain projet." }
+    ];
+    let idx = 0, active = false, repositionTimer = null, autoTimer = null;
+
+    const highlight = document.createElement('div');
+    highlight.className = 'tour-highlight';
+    const tooltip = document.createElement('div');
+    tooltip.className = 'tour-tooltip';
+    tooltip.innerHTML =
+      '<div class="tour-step mono"></div>' +
+      '<div class="tour-progress"><i></i></div>' +
+      '<h4></h4><p></p>' +
+      '<div class="tour-actions">' +
+        '<button type="button" class="tour-skip">Fermer ✕</button>' +
+        '<div class="tour-nav-btns">' +
+          '<button type="button" class="tour-prev">← Précédent</button>' +
+          '<button type="button" class="tour-next">Suivant →</button>' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(highlight);
+    document.body.appendChild(tooltip);
+
+    function position(){
+      if(!active) return;
+      const step = steps[idx];
+      const el = document.querySelector(step.sel);
+      if(!el) return;
+      const r = el.getBoundingClientRect();
+      const pad = 10;
+      highlight.style.left = (r.left - pad) + 'px';
+      highlight.style.top = (r.top - pad) + 'px';
+      highlight.style.width = (r.width + pad*2) + 'px';
+      highlight.style.height = (r.height + pad*2) + 'px';
+      const tw = tooltip.offsetWidth || 320;
+      let top = r.bottom + pad*2;
+      if(top + 220 > window.innerHeight){ top = Math.max(16, r.top - pad*2 - 200); }
+      let left = Math.min(Math.max(16, r.left), window.innerWidth - tw - 16);
+      tooltip.style.top = top + 'px';
+      tooltip.style.left = left + 'px';
+    }
+
+    function clearAutoTimer(){ if(autoTimer){ clearTimeout(autoTimer); autoTimer = null; } }
+
+    function animateProgress(duration){
+      const bar = tooltip.querySelector('.tour-progress i');
+      bar.style.transition = 'none';
+      bar.style.width = '0%';
+      void bar.offsetWidth; // force reflow so the transition below restarts cleanly
+      bar.style.transition = 'width ' + duration + 'ms linear';
+      bar.style.width = '100%';
+    }
+
+    function autoAdvance(){
+      clearAutoTimer();
+      const step = steps[idx];
+      const duration = Math.max(3200, Math.min(7000, step.text.length * 45));
+      animateProgress(duration);
+      autoTimer = setTimeout(function(){
+        if(idx < steps.length - 1){ idx++; renderStep(); }
+        else { finish(); }
+      }, duration);
+    }
+
+    function renderStep(){
+      const step = steps[idx];
+      const el = document.querySelector(step.sel);
+      if(!el){ return; }
+      tooltip.querySelector('.tour-step').textContent = 'ÉTAPE ' + (idx+1) + ' / ' + steps.length;
+      tooltip.querySelector('h4').textContent = step.title;
+      tooltip.querySelector('p').textContent = step.text;
+      tooltip.querySelector('.tour-prev').style.visibility = idx === 0 ? 'hidden' : 'visible';
+      tooltip.querySelector('.tour-next').textContent = idx === steps.length - 1 ? 'Terminer' : 'Suivant →';
+      el.scrollIntoView({ behavior:'smooth', block:'center' });
+      if(repositionTimer) clearInterval(repositionTimer);
+      let ticks = 0;
+      repositionTimer = setInterval(function(){
+        position();
+        ticks++;
+        if(ticks > 25) clearInterval(repositionTimer);
+      }, 40);
+      autoAdvance();
+    }
+
+    function start(){
+      active = true; idx = 0;
+      highlight.style.display = 'block';
+      tooltip.style.display = 'block';
+      renderStep();
+    }
+    function stopTour(){
+      clearAutoTimer();
+      if(repositionTimer) clearInterval(repositionTimer);
+      active = false;
+      highlight.style.display = 'none';
+      tooltip.style.display = 'none';
+    }
+    function finish(){
+      clearAutoTimer();
+      if(repositionTimer) clearInterval(repositionTimer);
+      active = false;
+      highlight.style.display = 'none';
+      tooltip.style.display = 'none';
+      window.scrollTo({ top:0, behavior:'smooth' });
+    }
+    function next(){ clearAutoTimer(); if(idx < steps.length - 1){ idx++; renderStep(); } else { finish(); } }
+    function prev(){ clearAutoTimer(); if(idx > 0){ idx--; renderStep(); } }
+
+    tooltip.querySelector('.tour-next').addEventListener('click', next);
+    tooltip.querySelector('.tour-prev').addEventListener('click', prev);
+    tooltip.querySelector('.tour-skip').addEventListener('click', stopTour);
+    document.addEventListener('keydown', function(e){ if(active && e.key === 'Escape') stopTour(); });
+    window.addEventListener('scroll', position, { passive:true });
+    window.addEventListener('resize', position);
+
+    const tourBtn = document.getElementById('tourBtn');
+    if(tourBtn){
+      tourBtn.addEventListener('click', function(e){ e.preventDefault(); start(); });
+    }
   })();
 </script>
